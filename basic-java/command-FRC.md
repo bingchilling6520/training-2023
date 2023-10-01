@@ -106,3 +106,11 @@ public void execute() {
 ```
 - Mỗi khi hàm execute() chạy thì ngay đấy hàm isFinished() sẽ được check, nếu hàm này trả về `true`, nghĩa là cái command này đã "finished" rồi, thì nó sẽ chạy end() và sau đó dừng lại, không chạy nữa.
 - Để bắt đầu một command, ta có thể dùng Trigger hoặc tự schedule command.
+- Để tự schedule một command, ta lấy 1 object của class command đó và gọi hàm `schedule()`.
+- VD:
+``` java
+  @Override
+  public void teleopInit() { //Hàm này sẽ được giới thiệu ở phần Robot.java sau, chỉ cần biết nó giống như initialize() nhưng thay vì chạy trước 1 command thì nó chạy trước phần teleop (phần điều khiển bằng tay, ngược lại với phần auto, chạy bằng code)
+    driveJoystickCommand.schedule(); //Bắt đầu command driveJoystick, nó đầu tiên sẽ chạy initalize() rồi chạy execute() đến khi nào isFinished() thì chạy end().
+  }
+```
