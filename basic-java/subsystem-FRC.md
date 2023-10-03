@@ -82,3 +82,14 @@ public Drivebase() {
 ```
 - Một subsystem có thể có nhiều các Method tự viết khác nhau, và khi xử lý logic thì KHÔNG BAO GIỜ được trực tiếp giao tiếp với phần cứng mà bắt buộc phải qua một Subsystem và sử dụng các method của nó.
 - Method `periodic` trong 1 Subsystem sẽ được chạy lặp đi lặp lại mỗi loop của con Robot. Method này thường dùng để cập nhật thông tin liên tục về 1 cái gì đó (tốc độ, góc xoay, nhiệt độ động cơ, ...) hoặc xử lý thông tin liên quan đến subsystem liên tục. Lưu ý, vì hàm này được chạy mỗi loop nên là nên viết hàm này nhỏ gọn, nếu để nó quá phức tạp có thể khiến bot "lag".
+VD:
+``` java
+  @Override
+  public void periodic() {
+    // Put velocity
+    SmartDashboard.putNumber("Motor Left Front", leftFrontMotor.get()); //Cập nhật vận tốc của các motor drivebase lên ứng dụng SmartDashBoard
+    SmartDashboard.putNumber("Motor Left Back", leftBackMotor.get());
+    SmartDashboard.putNumber("Motor Right Front", rightFrontMotor.get());
+    SmartDashboard.putNumber("Motor Right Back", rightBackMotor.get());
+  }
+```
