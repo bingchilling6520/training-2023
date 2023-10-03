@@ -46,6 +46,7 @@ public class DriveStraight extends CommandBase {
 }
 
 ```
+### Cách viết class Command
 - Đầu tiên ta sẽ có Constructor của class này (trong VD đang là command để đi thẳng vĩnh viễn, với các command khác làm tương tự) nơi ta có thể yêu cầu những thông số cần thiết để tạo nên class này. Trong VD này, ta sẽ cần tốc độ di chuyển của con bot, Subsystem dùng để điều khiển, lái con bot. Trước khi viết Constructor, ta sẽ cần tạo field trong class để chứa các thông tin đó đã.
 ``` java
   float speed; //Tốc độ của con bot (khoảng từ 0 đến 1)
