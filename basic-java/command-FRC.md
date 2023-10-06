@@ -106,6 +106,7 @@ public void execute() {
   }
 ```
 - Mỗi khi hàm execute() chạy thì ngay đấy hàm isFinished() sẽ được check, nếu hàm này trả về `true`, nghĩa là cái command này đã "finished" rồi, thì nó sẽ chạy end() và sau đó dừng lại, không chạy nữa.
+### Bắt đầu một command
 - Để bắt đầu một command, ta có thể dùng Trigger hoặc tự schedule command.
 - Để tự schedule một command, ta lấy 1 object của class command đó và gọi hàm `schedule()`.
 - VD:
