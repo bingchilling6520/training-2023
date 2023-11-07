@@ -30,7 +30,7 @@ VD:
 private Trigger HavingHighSpeedTrigger = new Trigger(() -> (speed > 100)); //Trigger gắn với sự kiện con bot đi quá nhanh (tốc độ có giá trị hơn 100);
 ```
 ### Liên kết Trigger với Command
-- Ta sẽ liên kết Trigger với Command ở trong file `RobotContainer.java` và ở hàm `configureBindings()`.
+- Ta sẽ liên kết Trigger với Command ở trong class `RobotContainer` và ở hàm `configureBindings()`.
 - Để liên kết 1 Trigger với 1 Command, ta sử dụng các method ở trong class Trigger.
 - `onTrue(Command)`: Liên kết Trigger này với Command được đưa vào làm parameter. Command sẽ chạy khi Trigger True.
 - `onFalse(Command)`: Ngược lại với cái bên trên, Command sẽ chạy khi Trigger False.
