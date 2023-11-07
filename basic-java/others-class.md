@@ -19,7 +19,7 @@
   }
 ```
 - Ta có thể thấy vì ta chỉ có thể trả về một command duy nhất ở hàm này, Command này phải thực hiện tất cả các tác vụ cần thiết ở phần tự động của chúng ta (di chuyển, nhặt bóng, ...) vì vậy ta thường sẽ phải kết hợp các Command với nhau bằng CommandGroup (được nói kĩ hơn ở phần CommandGroup).
-## Robot
+## `Robot`
 - Class này chứa các hàm mà sẽ được gọi vào các thời điểm, chế độ hoạt động khác nhau mà con Robot trải qua trên sân. (Chế độ lái tay, tự động trên sân, test,...).
 - *Lưu ý*: Trong template thì các hàm này đã có code viết sẵn (những dòng này rất quan trọng), không được xoá những dòng code này nếu như không biết đang làm gì.
 - Các hàm này đều sẽ có dạng:
@@ -33,7 +33,7 @@
 - Các chế độ này có thể được chỉnh trên DriverStation:
 ![image](https://github.com/bingchilling6520/training-2023/assets/86175803/49e20ffc-745b-4f91-8614-89856e5eeadd)
 - `teleop` chính là chế độ TeleOperated, `autonomous` tương ứng với Autonomous, còn chế độ `disabled` bắt đầu khi ấn nút Disable và kết thúc khi ấn nút Enable.
-## Constant
+## `Constant`
 - Class này là nơi để ta lưu những biến toàn cục (global variable) (và các biến thường cũng là hằng số luôn) mà ta muốn sử dụng ở tất cả các class khác nhau. Thay vì ở mỗi class ta lại phải khai báo các biến này, thì ta chỉ cần khai báo biến ở class `Constant` và rồi sử dụng `import static` để sử dụng ở tất cả các class.
 - Ta còn có thể tạo 1 class con bên trong class constant này nếu ta muốn phân chia rạch ròi các loại biến ra với nhau hơn.
 - VD: 1 class con chỉ khai báo các hằng số là ID của motor robot, 1 class con chỉ khai báo các hằng số là tốc độ tối đa của motor robot,...
