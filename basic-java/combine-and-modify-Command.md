@@ -58,4 +58,6 @@ new SequentialCommandGroup( //Tạo một CommandGroup đầu tiên vừa đi th
 ``` java
 new RunCommand(() -> arcadeDrive()); //Một Command để chạy lái arcade
 ```
-- `StartEndCommand`, `startEnd`: 
+- `StartEndCommand`, `startEnd`: Đưa vào trong này 2 lambda function, lambda function đầu tiên sẽ chạy khi Command bắt đầu còn lambda function thứ hai sẽ chạy khi Command kết thúc. VD:
+``` java
+```
