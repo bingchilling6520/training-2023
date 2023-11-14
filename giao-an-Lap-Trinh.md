@@ -12,8 +12,7 @@
 - Có hai paradigm (mẫu hình) thường được sử dụng trong code FRC
   - TimedRobot: Chạy giống mạch UNO, có một hàm khởi tạo, được gọi một lần duy nhất khi con Robot bắt đầu và một hàm lặp, chạy đi chạy lại, lặp liên tục trong lúc Robot được chạy. 
   - CommandRobot: Viết theo dạng viết các phần riêng biệt: Subsystem, xử lý tất cả logic phần cứng; Command và Trigger, Trigger sẽ xử lý khi nào Command bắt đầu và Command sẽ chạy các đoạn code cần thiết.
-# Lập trình trong FRC
-### Subsystem
+## Subsystem
 - Song song với code logic cho con Robot, ta cũng cần phải tương tác vật lý với môi trường bằng các motors và nhận thông tin từ môi trường bằng các loại cảm biến, sensors.
 - Tất cả những cái gì liên quan đến giao tiếp trực tiếp với motor, sensor thì nên được viết code ở subsystem.
 - Trong FRC, ta sẽ viết code để điều khiển trực tiếp motor và sensor vào một Class tự tạo mới mà `extends` class `SubsystemBase`, và tất cả các Class này gọi chung là Subsystem.
@@ -107,8 +106,7 @@ VD:
     SmartDashboard.putNumber("Motor Right Back", rightBackMotor.get());
   }
 ```
-# Lập trình trong FRC
-### Command
+## Command
 - Không giống như các chương trình mà chúng ta hay code bình thường, viết 1 đoạn code xong rồi MT sẽ chạy nó tuần tự từ trên xuống dưới, các dòng code trong FRC thường sẽ chạy song song với nhau, ta chỉ cần viết đoạn code cần chạy, code khi nào nó chạy, và code khi nào nó dừng.
 - VD: Khi code con bot đi thẳng, ta sẽ để điều kiện bắt đầu là ngay khi con bot được bật, viết đoạn code cần thiết để con bot đi thẳng, và để điều kiện dừng lại là khi nó đi được quãng đường/thời gian mong muốn.
 - Trong FRC, ta sẽ viết code để chạy và điều kiện dừng ở một Class tự tạo mới mà `extends` class `CommandBase`, và tất cả các Class này gọi chung là Command
