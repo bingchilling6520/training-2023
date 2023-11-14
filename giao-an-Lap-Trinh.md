@@ -341,8 +341,8 @@ private WPI_TalonSRX leftMaster = new WPI_TalonSRX(LEFT_MASTER); //Gọi LEFT_MA
 ```
 # Các hàm của `WPI_TalonSRX`
 - `setNeutralMode(NeutralMode)`: Khi tắt động cơ sẽ làm gì,
- - `NeutralMode.Brake`: Phanh
- - `NeutralMode.Coast`: Sau khi tắt động cơ thì động cơ sẽ trượt.
+   - `NeutralMode.Brake`: Phanh
+   - `NeutralMode.Coast`: Sau khi tắt động cơ thì động cơ sẽ trượt.
 - VD:
 ```` java
     leftMaster.setNeutralMode(NeutralMode.Brake);
