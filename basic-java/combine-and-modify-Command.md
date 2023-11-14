@@ -39,3 +39,22 @@ new SequentialCommandGroup( //Tạo một CommandGroup đầu tiên vừa đi th
 - Lưu ý, vì CommandGroup cũng là một loại Command, ta có thể thêm các CommandGroup vào 1 CommandGroup khác.
 # Các Command chuyên dụng
 - WPILib còn tạo ra các Command chuyên dụng cho các trường hợp hay dùng khác nhau.
+- Để tạo các Command này ta có thể khai báo một Object của class hoặc tương ứng, dùng một method (một factory). Dưới đây sẽ ghi cả hai gộp chung với nhau, sự khác biệt duy nhất là thay vì ta đưa các parameter vào Constructor của Object thì ta sẽ đưa các parameter vào method tương ứng.
+- Các Command này thường yêu cầu lambda function (tất cả những lần nhắc tới lambda function dưới đây sẽ tương đương với một `Runnable`).
+## Một số Command chuyên dụng thường dùng
+- `InstantCommand`, `runOnce`: Đưa vào trong đó một lambda function, và cái lambda function đó sẽ chạy một lần duy nhất rồi dừng lại. VD:
+``` java
+  /** Đóng hatch */
+  public CommandBase grabHatchCommand() {
+    return new InstantCommand(() -> m_hatchSolenoid.set(kForward));
+  }
+
+  /** Mở hatch. */
+  public CommandBase releaseHatchCommand() 
+    return new InstantCommand(() -> m_hatchSolenoid.set(kReverse));
+  }
+```
+- `RunCommand`, `run`: Đưa vào trong đó một lambda function, và cái lambda function đó sẽ chạy liên tục vĩnh viễn, không dừng lại (giống như kiểu khi `isFinished()` luôn trả về false). VD:
+``` java
+```
+- 
