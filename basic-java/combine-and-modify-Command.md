@@ -39,7 +39,7 @@ new SequentialCommandGroup( //Tạo một CommandGroup đầu tiên vừa đi th
 - Lưu ý, vì CommandGroup cũng là một loại Command, ta có thể thêm các CommandGroup vào 1 CommandGroup khác.
 # Các Command chuyên dụng
 - WPILib còn tạo ra các Command chuyên dụng cho các trường hợp hay dùng khác nhau.
-- Để tạo các Command này ta có thể khai báo một Object của class hoặc tương ứng, dùng một method (một factory). Dưới đây sẽ ghi cả hai gộp chung với nhau, sự khác biệt duy nhất là thay vì ta đưa các parameter vào Constructor của Object thì ta sẽ đưa các parameter vào method tương ứng.
+- Để tạo các Command này ta có thể khai báo một Object của class hoặc tương ứng, dùng một static method (hay được gọi là một factory) của class `Commands` (chú ý không nhầm với class `Command`). Dưới đây sẽ ghi cả hai gộp chung với nhau, sự khác biệt duy nhất là thay vì ta đưa các parameter vào Constructor của Object thì ta sẽ đưa các parameter vào method tương ứng.
 - Các Command này thường yêu cầu lambda function (tất cả những lần nhắc tới lambda function dưới đây sẽ tương đương với một `Runnable`). Ngoài ra, ta còn có thể thêm các Subsystem vào cuối các Command, đó sẽ là requirement cho của các Command này.
 ## Một số Command chuyên dụng thường dùng
 - `InstantCommand`, `runOnce()`: Đưa vào trong đó một lambda function, và cái lambda function đó sẽ chạy một lần duy nhất rồi dừng lại. VD:
@@ -58,7 +58,7 @@ new SequentialCommandGroup( //Tạo một CommandGroup đầu tiên vừa đi th
 ``` java
 new RunCommand(() -> arcadeDrive()); //Một Command để chạy lái arcade
 ```
-- `StartEndCommand`, `startEnd`: Đưa vào trong này 2 lambda function, lambda function đầu tiên sẽ chạy khi Command bắt đầu còn lambda function thứ hai sẽ chạy khi Command kết thúc. VD:
+- `StartEndCommand`, `startEnd()`: Đưa vào trong này 2 lambda function, lambda function đầu tiên sẽ chạy khi Command bắt đầu còn lambda function thứ hai sẽ chạy khi Command kết thúc. VD:
 ``` java
 Commands.StartEnd(
     // Bắt đầu xoay shooter với vận tốc 50%
@@ -68,4 +68,27 @@ Commands.StartEnd(
     // Thêm requirement cần thiết
     m_shooter
 )
+```
+- `FunctionalCommand`: Đưa vào trong này 4 lambda function: 3 `Runnable` tương ứng với các hàm `void initialize()`, `void execute()`, `void end(boolean)` và một `BooleanSupplier` tương ứng với `boolean isFinished()`. Đây là cách để viết toàn bộ một Command đầy đủ nhưng mà không cần tạo một class riêng. VD:
+``` java
+new FunctionalCommand(
+    // Reset encoder (một loại sensor) khi command bắt đầu
+    m_robotDrive::resetEncoders,
+    // Liên tục chạy con Robot đi thẳng trong khi Command đang chạy
+    () -> m_robotDrive.arcadeDrive(kAutoDriveSpeed, 0),
+    // Dừng lái khi Command kết thúc
+    interrupted -> m_robotDrive.arcadeDrive(0, 0),
+    // Điều kiện kết thúc là con robot đi được một khoảng cách cần thiết
+    () -> m_robotDrive.getAverageEncoderDistance() >= kAutoDriveDistance,
+    // Thêm requirement cần thiết
+    m_robotDrive
+)
+```
+- `WaitCommand`, `waitSeconds(double)`: Đưa vào trong này một `double`, Command này sẽ đợi chính xác số giây đó. Hay sử dụng để căn thời gian chính xác. VD:
+``` java
+return new SequentialCommandGroup(
+      driveForward, // Con bot sẽ đi thẳng
+      new WaitCommand(5.0); //Sau đó đợi 5 giây
+      driveBackward //Sau đó đi lùi và kết thúc
+    );
 ```
