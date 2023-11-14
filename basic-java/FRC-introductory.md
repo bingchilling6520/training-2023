@@ -1,7 +1,7 @@
 # Giải thích một trận đầu FRC và một vài thuật ngữ
 - Trong một trấn đấu FRC sẽ có hai phần:
- - Auto: Bot chỉ được điều khiển bằng code, không được nhận bất cứ tín hiệu từ Driver (người điều khiển).
- - TeleOperated: Bot đã được nhận tín hiệu và điều khiển từ Driver (sử dụng app Driver Station).
+  - Auto: Bot chỉ được điều khiển bằng code, không được nhận bất cứ tín hiệu từ Driver (người điều khiển).
+  - TeleOperated: Bot đã được nhận tín hiệu và điều khiển từ Driver (sử dụng app Driver Station).
 # WPILib
 - Đây là thư viện chứa hầu hết các chức năng cần thiết của con Robot FRC.
 - Link tải: https://github.com/wpilibsuite/allwpilib/releases
