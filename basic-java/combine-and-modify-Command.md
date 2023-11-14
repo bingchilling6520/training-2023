@@ -40,7 +40,7 @@ new SequentialCommandGroup( //Tạo một CommandGroup đầu tiên vừa đi th
 # Các Command chuyên dụng
 - WPILib còn tạo ra các Command chuyên dụng cho các trường hợp hay dùng khác nhau.
 - Để tạo các Command này ta có thể khai báo một Object của class hoặc tương ứng, dùng một method (một factory). Dưới đây sẽ ghi cả hai gộp chung với nhau, sự khác biệt duy nhất là thay vì ta đưa các parameter vào Constructor của Object thì ta sẽ đưa các parameter vào method tương ứng.
-- Các Command này thường yêu cầu lambda function (tất cả những lần nhắc tới lambda function dưới đây sẽ tương đương với một `Runnable`).
+- Các Command này thường yêu cầu lambda function (tất cả những lần nhắc tới lambda function dưới đây sẽ tương đương với một `Runnable`). Ngoài ra, ta còn có thể thêm các Subsystem vào cuối các Command, đó sẽ là requirement cho của các Command này.
 ## Một số Command chuyên dụng thường dùng
 - `InstantCommand`, `runOnce()`: Đưa vào trong đó một lambda function, và cái lambda function đó sẽ chạy một lần duy nhất rồi dừng lại. VD:
 ``` java
@@ -60,4 +60,12 @@ new RunCommand(() -> arcadeDrive()); //Một Command để chạy lái arcade
 ```
 - `StartEndCommand`, `startEnd`: Đưa vào trong này 2 lambda function, lambda function đầu tiên sẽ chạy khi Command bắt đầu còn lambda function thứ hai sẽ chạy khi Command kết thúc. VD:
 ``` java
+Commands.StartEnd(
+    // Bắt đầu xoay shooter với vận tốc 50%
+    () -> m_shooter.shooterSpeed(0.5),
+    // Dừng shooter khi Command kết thúc
+    () -> m_shooter.shooterSpeed(0.0),
+    // Thêm requirement cần thiết
+    m_shooter
+)
 ```
